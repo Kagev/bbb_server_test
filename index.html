@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>LED Control</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <h1>LED Control</h1>
+    <button id="on_button">Turn On</button>
+    <button id="off_button">Turn Off</button>
+
+    <script>
+        // Function to toggle the LED state
+        function toggleLED(state) {
+            $.ajax({
+                url: '/toggle_led/' + state,
+                success: function(result) {
+                    console.log('LED state changed to ' + result);
+                }
+            });
+        }
+
+        // Attach event handlers to the buttons
+        $('#on_button').click(function() {
+            toggleLED('on');
+        });
+
+        $('#off_button').click(function() {
+            toggleLED('off');
+        });
+    </script>
+</body>
+</html>
